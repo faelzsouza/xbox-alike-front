@@ -1,6 +1,8 @@
 import "./GamesList.scss";
 import React, { useEffect, useState } from "react";
 import { Api } from "../../../api/api";
+import VideoEmbed from "../VideoEmbed/VideoEmbed";
+import GameCard from "../GameCard/GameCard";
 
 const GamesList = () => {
     const [ games, setGames ] = useState([]);
@@ -12,15 +14,10 @@ const GamesList = () => {
     };
 
     useEffect(() => fetchGetAll(), []);
-
+    console.log(games)
     return (
-        <div className="list-group">
-            { games.map((game, idx) => (
-                <div key={idx}>
-                <div>{game.name}</div>
-                {/* <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idx + 1}.png`}/> */}
-                </div>
-            )) }
+        <div className="games-group">
+            <GameCard games={games} />
         </div>
     );
 };
