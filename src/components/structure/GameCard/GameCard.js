@@ -5,6 +5,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 const GameCard = (props) => {
     return props.games.map((game, idx) => (
@@ -14,6 +15,9 @@ const GameCard = (props) => {
                 <Typography gutterBottom variant="h5" component="div">
                     {game.title}
                 </Typography>
+                <CardActions>
+                    <Button size="small" variant="outlined">Detalhes</Button>
+                </CardActions>
             </CardContent>
         </Card>
     ));
