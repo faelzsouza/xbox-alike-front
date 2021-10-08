@@ -6,21 +6,37 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { styled } from "@mui/system";
 
 const GameCard = (props) => {
     return props.games.map((game, idx) => (
-        <Card sx={{ width: 300 }} key={idx} className="game-card">
-            <CardMedia component="img" image={game.cover} height="428" />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+        <Card sx={{ width: 140, marginBottom: "2rem"}} key={`game-card${idx}`} className="game-card">
+            <CardMedia component="img" image={game.cover} height="214" className="game-card__image" />
+            <CardContentNoPadding>
+{/*                 <Typography gutterBottom variant="h6" component="div">
                     {game.title}
-                </Typography>
-                <CardActions>
+                </Typography> */}
+                <CardActionsEdited className="buttons-group">
                     <Button size="small" variant="outlined">Detalhes</Button>
-                </CardActions>
-            </CardContent>
+                    <Button size="small" variant="outlined">Favoritar</Button>
+                </CardActionsEdited>
+            </CardContentNoPadding>
         </Card>
     ));
 };
+
+const CardContentNoPadding = styled(CardContent)(`
+    padding: 0;
+    &:last-child {
+        padding-bottom: 0
+    }
+`)
+
+const CardActionsEdited = styled(CardActions)(`
+    >:not(:first-of-type) {
+        margin-left: 0
+    }
+`)
+
 
 export default GameCard;
