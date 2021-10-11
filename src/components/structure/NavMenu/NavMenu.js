@@ -39,7 +39,7 @@ const StyledMenu = styled.div`
             color: #343078;
         }
     }
-    z-index: 1
+    z-index: 9
 `;
 
 const Menu = ({ open, setOpen }) => {
