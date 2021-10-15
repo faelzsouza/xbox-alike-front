@@ -12,21 +12,23 @@ import NewGenre from "../NewGenre/NewGenre";
 const GenresCheckbox = ({ onGenresChecked }) => {
     const [genres, setGenres] = useState(undefined);
     const [genresChecked, setGenresChecked] = useState([]);
-    
-    const [newGenres, setNewGenres ] = useState(false)
+
+    const [newGenres, setNewGenres] = useState(true);
 
     const getAllGenres = async () => {
-        const response = await Api.getAll("genres");
+        const response = await Api.getAll("genres", true);
         const result = await response.json();
         setGenres(result);
+        setNewGenres(false);
     };
-    
+
     useEffect(() => {
-        getAllGenres()
-        setNewGenres(false)
+        if (newGenres) {
+            getAllGenres();
+        }
     }, [newGenres]);
-    
-    if (!genres) {
+
+    if (!genres || newGenres) {
         return "Loading...";
     }
 
@@ -40,7 +42,7 @@ const GenresCheckbox = ({ onGenresChecked }) => {
             list.splice(list.indexOf(value), 1);
         }
         setGenresChecked(list);
-        onGenresChecked(list)
+        onGenresChecked(list);
     };
     return (
         <FormControl sx={{ marginTop: "1rem" }} component="fieldset">
