@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import React, { useState } from "react";
 import { Api } from "../../../api/api";
 
-const NewGenre = ({setNewGenres}) => {
+const NewGenre = ({ setNewGenres }) => {
     const [anchorEl, setAnchorEl] = useState(null);
 
     const handleClick = (event) => {
@@ -12,14 +12,15 @@ const NewGenre = ({setNewGenres}) => {
 
     const handleClose = () => setAnchorEl(null);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
         const payload = {
             name: e.target.name.value,
         };
-        console.log(payload)
-        Api.insert('genres', payload)
-        setNewGenres(true)
+        console.log(payload);
+        await Api.insert("genres", payload, true);
+        setNewGenres(true);
     };
 
     const open = Boolean(anchorEl);
@@ -45,13 +46,15 @@ const NewGenre = ({setNewGenres}) => {
                     horizontal: "center",
                 }}
                 transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center'
+                    vertical: "top",
+                    horizontal: "center",
                 }}
             >
                 <Box component="form" onSubmit={handleSubmit}>
                     <TextField name="name" />
-                    <Button type="submit" size="large">Send</Button>
+                    <Button type="submit" size="large">
+                        Send
+                    </Button>
                 </Box>
             </Popover>
         </div>
