@@ -5,7 +5,6 @@ import GamesList from '../../components/structure/GamesList/GamesList'
 const Home = () => {
     return (
         <div>
-            Home
             <GamesList />
         </div>
     )
