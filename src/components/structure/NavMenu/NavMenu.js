@@ -57,7 +57,7 @@ const Menu = ({ open, setOpen }) => {
                 </span>
                 New Game
             </Link>
-            <Link to="/" onClick={() => setOpen(!open)}>
+            <Link to="/login" onClick={() => setOpen(!open)}>
                 <span role="img" aria-label="contact">
                     📩
                 </span>
