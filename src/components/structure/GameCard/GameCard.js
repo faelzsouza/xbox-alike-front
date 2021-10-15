@@ -10,8 +10,8 @@ import { styled } from "@mui/system";
 
 const GameCard = (props) => {
     return props.games.map((game, idx) => (
-        <Card sx={{ width: 140, marginBottom: "2rem"}} key={`game-card${idx}`} className="game-card">
-            <CardMedia component="img" image={game.cover} height="214" className="game-card__image" />
+        <Card sx={{ width: 141, marginTop: "2rem"}} key={`game-card${idx}`} className="game-card">
+            <CardMedia component="img" image={game.cover} height="216" className="game-card__image" />
             <CardContentNoPadding>
 {/*                 <Typography gutterBottom variant="h6" component="div">
                     {game.title}
