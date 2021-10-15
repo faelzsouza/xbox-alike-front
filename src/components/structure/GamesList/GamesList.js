@@ -9,7 +9,7 @@ const GamesList = () => {
     const [ games, setGames ] = useState(undefined);
 
     const fetchGetAll = async () => {
-        const response = await Api.getAll('games');
+        const response = await Api.getAll('games', true);
         const res = await response.json();
         setGames(res);
     };
