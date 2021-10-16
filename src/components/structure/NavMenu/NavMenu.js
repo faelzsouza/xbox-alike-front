@@ -1,6 +1,7 @@
-import React from "react";
-import styled from "styled-components"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { JwtHandler } from "../../../local-storage/jwt-handler";
 
 const StyledMenu = styled.div`
     display: flex;
@@ -39,10 +40,21 @@ const StyledMenu = styled.div`
             color: #343078;
         }
     }
-    z-index: 9
+    z-index: 9;
 `;
 
 const Menu = ({ open, setOpen }) => {
+    const [isLogged, setIsLogged] = useState(JwtHandler.isJwtValid());
+    useEffect(() => {
+        const handleOnJwtChange = () => {
+            setIsLogged(JwtHandler.isJwtValid());
+        };
+        window.addEventListener("onJwtChange", handleOnJwtChange);
+        return () => {
+            window.removeEventListener("onJwtChange", handleOnJwtChange);
+        };
+    }, []);
+
     return (
         <StyledMenu open={open}>
             <Link to="/" onClick={() => setOpen(!open)}>
@@ -57,11 +69,14 @@ const Menu = ({ open, setOpen }) => {
                 </span>
                 New Game
             </Link>
-            <Link to="/login" onClick={() => setOpen(!open)}>
+            <Link
+                to={isLogged ? "/logout" : "/login"}
+                onClick={() => setOpen(!open)}
+            >
                 <span role="img" aria-label="contact">
                     📩
                 </span>
-                Login
+                {isLogged ? "Logout" : "Login"}
             </Link>
         </StyledMenu>
     );
