@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import NewGame from "./pages/NewGame/NewGame";
 import GuardedRoute from "./components/auth/GuardedRoute/GuardedRoute";
 import Login from "./pages/Login/Login";
+import Logout from "./pages/Logout/Logout";
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Route path="/login" component={Login} />
                 <GuardedRoute path="/" exact={true} component={Home} />
                 <GuardedRoute path="/game/new" component={NewGame} />
+                <Route path="/logout" component={Logout} />
             </Switch>
             <Footer />
         </div>
