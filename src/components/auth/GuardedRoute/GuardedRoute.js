@@ -1,8 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
+import { JwtHandler } from "../../../local-storage/jwt-handler";
 
 const GuardedRoute = ({ component: Component, ...rest }) => {
-    const auth = Boolean(localStorage.getItem("JWT"));
+    const auth = JwtHandler.isJwtValid();
     return (
         <Route
             {...rest}
