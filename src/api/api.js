@@ -1,3 +1,5 @@
+import { JwtHandler } from "../local-storage/jwt-handler";
+
 export const Api = {
     baseUrl: [
         "https://pokeapi.co/api/v2/",
@@ -10,7 +12,7 @@ export const Api = {
         fetch(Api.baseUrl[1] + `/${tableName}`, postRequest(body, auth)),
     login: (body) => fetch(Api.baseUrl[1] + "/login", postRequest(body)),
     authHeader: () => ({
-        Authorization: "Bearer " + localStorage.getItem("JWT"),
+        Authorization: "Bearer " + JwtHandler.getJwt(),
     }),
 };
 
