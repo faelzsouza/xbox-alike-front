@@ -69,6 +69,12 @@ const Menu = ({ open, setOpen }) => {
                 </span>
                 New Game
             </Link>
+            <Link to="/profiles" onClick={() => setOpen(!open)}>
+                <span role="img" aria-label="price">
+                    💸
+                </span>
+                Profiles
+            </Link>
             <Link
                 to={isLogged ? "/logout" : "/login"}
                 onClick={() => setOpen(!open)}
