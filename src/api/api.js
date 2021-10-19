@@ -1,20 +1,33 @@
 import { JwtHandler } from "../local-storage/jwt-handler";
 
 export const Api = {
-    baseUrl: [
+    urlList: [
         "https://pokeapi.co/api/v2/",
         "http://localhost:3000",
         "https://back-xboxalike.herokuapp.com",
     ],
+    baseUrl: "http://localhost:3000",
+
     getAll: (tableName, auth) =>
-        fetch(Api.baseUrl[1] + `/${tableName}`, getRequest(auth)),
+        fetch(Api.baseUrl + `/${tableName}`, getRequest(auth)),
+
+    getProfilesByUserId: (userId, auth) =>
+        fetch(Api.baseUrl + `/profiles/byUserId/${userId}`, getRequest(auth)),
+
+    getById: (tableName, id, auth) =>
+        fetch(Api.baseUrl + `/${tableName}/${id}`, getRequest(auth)),
+
     insert: (tableName, body, auth) =>
-        fetch(Api.baseUrl[1] + `/${tableName}`, postRequest(body, auth)),
-    login: (body) => fetch(Api.baseUrl[1] + "/login", postRequest(body)),
+        fetch(Api.baseUrl + `/${tableName}`, postRequest(body, auth)),
+
+    login: (body) => fetch(Api.baseUrl + "/login", postRequest(body)),
+
     authHeader: () => ({
         Authorization: "Bearer " + JwtHandler.getJwt(),
     }),
 };
+
+// REQUEST TYPES
 
 const getRequest = (auth) => ({
     method: "GET",
