@@ -2,11 +2,10 @@ import { JwtHandler } from "../local-storage/jwt-handler";
 
 export const Api = {
     urlList: [
-        "https://pokeapi.co/api/v2/",
         "http://localhost:3000",
         "https://back-xboxalike.herokuapp.com",
     ],
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://back-xboxalike.herokuapp.com",
 
     getAll: (tableName, auth) =>
         fetch(Api.baseUrl + `/${tableName}`, getRequest(auth)),
@@ -22,12 +21,14 @@ export const Api = {
 
     login: (body) => fetch(Api.baseUrl + "/login", postRequest(body)),
 
+    update: (tableName, id, body, auth) => fetch(Api.baseUrl + `/${tableName}/${id}`, patchRequest(body, auth)),
+
     authHeader: () => ({
         Authorization: "Bearer " + JwtHandler.getJwt(),
     }),
 };
 
-// REQUEST TYPES
+// REQUEST BUILDS
 
 const getRequest = (auth) => ({
     method: "GET",
