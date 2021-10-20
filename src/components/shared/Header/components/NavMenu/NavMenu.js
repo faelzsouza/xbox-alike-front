@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { JwtHandler } from "../../../local-storage/jwt-handler";
+import { JwtHandler } from "../../../../../local-storage/jwt-handler";
+import { Api } from "../../../../../api/api";
 
 const StyledMenu = styled.div`
     display: flex;
@@ -69,7 +70,7 @@ const Menu = ({ open, setOpen }) => {
                 </span>
                 New Game
             </Link>
-            <Link to="/profiles" onClick={() => setOpen(!open)}>
+            <Link to={`/profiles`} onClick={() => setOpen(!open)}>
                 <span role="img" aria-label="price">
                     💸
                 </span>

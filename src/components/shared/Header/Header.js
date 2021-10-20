@@ -1,6 +1,6 @@
 import './Header.scss'
 import React from 'react'
-import NavMenu from '../../structure/NavMenu/NavMenu'
+import NavMenu from './components/NavMenu/NavMenu'
 
 const Header = () => {
     return (
