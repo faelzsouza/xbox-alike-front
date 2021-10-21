@@ -3,6 +3,7 @@ import "./App.css";
 import GuardedRoute from "./components/auth/GuardedRoute/GuardedRoute";
 import Footer from "./components/shared/Footer/Footer";
 import Header from "./components/shared/Header/Header";
+import EditGame from "./pages/EditGame/EditGame";
 import FavoriteGames from "./pages/Home/components/FavoriteGames/FavoriteGames";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
@@ -26,7 +27,7 @@ function App() {
                     component={FavoriteGames}
                 />
                 <GuardedRoute path="/profile/create" component={NewProfile}/>
-                <GuardedRoute path="/game/edit" component={NewGame}/>
+                <GuardedRoute path="/game/edit/:gameId" component={EditGame}/>
                 <Route path="/user/create" component={NewUser} />
                 <Route path="/logout" component={Logout} />
             </Switch>
