@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Box, Modal } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { Api } from "../../../../api/api";
 import EmbedVideo from "../../../../components/structure/EmbedVideo/EmbedVideo";
-import { Edit } from "@mui/icons-material";
+import { DeleteForever, Edit } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const style = {
@@ -52,7 +52,12 @@ export const GameDetailsModal = ({ cover, gameId }) => {
                 sx={{ overflow: "auto" }}
             >
                 <Box sx={style}>
-                    <Box sx={{display: "flex", justifyContent: "space-between"}}>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                        }}
+                    >
                         <Typography
                             id="keep-mounted-modal-title"
                             variant="h6"
@@ -61,7 +66,12 @@ export const GameDetailsModal = ({ cover, gameId }) => {
                         >
                             {game && game.title}
                         </Typography>
-                        <Link to={`/game/edit?game=${game && game.id}&edit=${true}`}><Edit /></Link>
+                        <div>
+                            <Link to={`/game/edit/${game && game.id}`}>
+                                <Edit />
+                            </Link>
+                            <DeleteModalButton gameId={game && game.id} />
+                        </div>
                     </Box>
                     <Typography
                         id="keep-mounted-modal-description"
@@ -82,6 +92,44 @@ export const GameDetailsModal = ({ cover, gameId }) => {
                         </Typography>
                         <EmbedVideo videoUrl={game && game.gameplay} />
                     </div>
+                </Box>
+            </Modal>
+        </div>
+    );
+};
+
+const DeleteModalButton = ({ gameId }) => {
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleDelete = async () => {
+        await Api.delete("games", gameId, true);
+        window.location.reload()
+    };
+    return (
+        <div>
+            <Link to={""} onClick={handleOpen}>
+                <DeleteForever />
+            </Link>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                    >
+                        Warning!
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Do you really want to delete this game permanently?
+                    </Typography>
+                    <Button onClick={handleDelete}>YES</Button>
+                    <Button onClick={handleClose}>NO</Button>
                 </Box>
             </Modal>
         </div>
