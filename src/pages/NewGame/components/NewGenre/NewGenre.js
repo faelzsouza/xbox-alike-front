@@ -18,7 +18,6 @@ const NewGenre = ({ setNewGenres }) => {
         const payload = {
             name: e.target.name.value,
         };
-        console.log(payload);
         await Api.insert("genres", payload, true);
         setNewGenres(true);
     };
@@ -31,7 +30,7 @@ const NewGenre = ({ setNewGenres }) => {
         <div>
             <Button
                 aria-describedby={id}
-                variant="contained"
+                variant="text"
                 onClick={handleClick}
             >
                 New Genre
