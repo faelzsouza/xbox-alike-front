@@ -1,12 +1,15 @@
-import './Footer.scss'
-import React from 'react'
+import "./Footer.scss";
+import React from "react";
 
 const Footer = () => {
     return (
         <footer>
-            Footer
+            <p>
+                © Copyright {new Date().getFullYear()} AtumVegan - All rights
+                reserved
+            </p>
         </footer>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;
