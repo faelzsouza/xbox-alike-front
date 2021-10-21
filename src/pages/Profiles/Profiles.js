@@ -1,12 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import ProfilesList from "../../components/structure/ProfilesList/ProfilesList";
+import { Link } from "react-router-dom";
+import ProfilesList from "./components/ProfilesList/ProfilesList";
 
 const Profiles = () => {
-    const { userId } = useParams();
+    const userId = localStorage.getItem('userId');
     return (
         <div>
             <ProfilesList userId={userId} />
+            <Link to="/profile/create">Create a New Profile</Link>
         </div>
     );
 };
