@@ -22,6 +22,14 @@ const StyledMenu = styled.div`
         width: 100%;
     }
 
+    @media screen and (min-width: 320px){
+        width: 300px
+    }
+
+    @media screen and (min-width: 575px){
+        width: 350px
+    }
+
     a {
         font-size: 2rem;
         text-transform: uppercase;
@@ -31,10 +39,10 @@ const StyledMenu = styled.div`
         color: #0d0c1d;
         text-decoration: none;
         transition: color 0.3s linear;
+        text-align: center;
 
         @media (max-width: 576px) {
             font-size: 1.5rem;
-            text-align: center;
         }
 
         &:hover {
@@ -60,19 +68,19 @@ const Menu = ({ open, setOpen }) => {
         <StyledMenu open={open}>
             <Link to="/" onClick={() => setOpen(!open)}>
                 <span role="img" aria-label="about us">
-                    💁🏻‍♂️
+                    🏠
                 </span>
                 Home
             </Link>
             <Link to="/game/new" onClick={() => setOpen(!open)}>
                 <span role="img" aria-label="price">
-                    💸
+                    🎮
                 </span>
                 New Game
             </Link>
             <Link to={`/profiles`} onClick={() => setOpen(!open)}>
                 <span role="img" aria-label="price">
-                    💸
+                    ☕
                 </span>
                 Profiles
             </Link>
@@ -81,7 +89,7 @@ const Menu = ({ open, setOpen }) => {
                 onClick={() => setOpen(!open)}
             >
                 <span role="img" aria-label="contact">
-                    📩
+                {isLogged ? "👋🏼" : "💻"}
                 </span>
                 {isLogged ? "Logout" : "Login"}
             </Link>
