@@ -23,6 +23,8 @@ export const Api = {
 
     update: (tableName, id, body, auth) => fetch(Api.baseUrl + `/${tableName}/${id}`, patchRequest(body, auth)),
 
+    delete: (tableName, id, auth) => fetch(Api.baseUrl + `/${tableName}/${id}`, deleteRequest(auth)),
+
     authHeader: () => ({
         Authorization: "Bearer " + JwtHandler.getJwt(),
     }),
