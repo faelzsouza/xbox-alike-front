@@ -37,8 +37,6 @@ const GameCard = ({ games, _selected }) => {
                 >
                     {game.title || game.game.title}
                 </Typography>
-
-                {/*                 <Button size="small" variant="outlined">Detalhes</Button> */}
             </CardContentNoPadding>
         </Card>
     ));
