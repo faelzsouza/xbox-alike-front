@@ -1,8 +1,9 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Api } from "../../api/api";
 import { JwtHandler } from "../../local-storage/jwt-handler";
-import { TextFieldEdited } from "../NewGame/NewGame";
+import { BoxEdited, TextFieldEdited } from "../NewGame/NewGame";
 
 const Login = (props) => {
     const handleSubmit = async (event) => {
@@ -21,19 +22,23 @@ const Login = (props) => {
 
         if (response.status === 200) {
             const accessToken = body.accessToken;
-            JwtHandler.setJwt(accessToken);
-            console.log(accessToken);
 
-            props.history.push("/");
+            localStorage.setItem('userId', body.userId);
+
+            // salva o JWT no localStorage
+            JwtHandler.setJwt(accessToken);
+
+            props.history.push(`/profiles`);
         }
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
+        <BoxEdited component="form" onSubmit={handleSubmit}>
             <TextFieldEdited label="E-mail" name="email" />
             <TextFieldEdited label="Password" name="password" type="password" />
-            <Button type="submit">Send</Button>
-        </Box>
+            <Button type="submit" variant="contained" sx={{width: "10rem", display: "block", margin: "1rem auto"}}>Sign in</Button>
+            <Button sx={{width: "10rem", display: "block", margin: "1rem auto"}}><Link to='/user/create'>Sign up</Link></Button>
+        </BoxEdited>
     );
 };
 
