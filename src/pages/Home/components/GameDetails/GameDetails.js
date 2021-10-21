@@ -42,6 +42,7 @@ export const GameDetailsModal = ({ cover, gameId }) => {
                 height="216"
                 className="game-card__image"
                 onClick={handleOpen}
+                sx={{ ":hover": { cursor: "pointer" } }}
             />
             <Modal
                 keepMounted
@@ -104,7 +105,7 @@ const DeleteModalButton = ({ gameId }) => {
     const handleClose = () => setOpen(false);
     const handleDelete = async () => {
         await Api.delete("games", gameId, true);
-        window.location.reload()
+        window.location.reload();
     };
     return (
         <div>
