@@ -1,18 +1,17 @@
-import "./VideoEmbed.scss";
 import React from "react";
+import './EmbedVideo.scss'
 
-const VideoEmbed = (props) => {
+const EmbedVideo = ({videoUrl}) => {
     return (
         <iframe
-            width="560"
-            height="315"
-            src={props.videoUrl}
+            src={videoUrl}
             title="YouTube video player"
-            frameborder="0"
+            frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
+            allowFullScreen
+            className="game-video"
         ></iframe>
     );
 };
 
-export default VideoEmbed;
+export default EmbedVideo;
