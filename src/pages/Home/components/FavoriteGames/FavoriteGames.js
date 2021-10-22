@@ -29,7 +29,7 @@ const FavoriteGames = () => {
                     <Typography
                         variant="h5"
                         component="h2"
-                        sx={{ marginTop: "1rem" }}
+                        sx={{ marginTop: "1rem", width: "100%" }}
                     >
                         Favorite Games
                     </Typography>

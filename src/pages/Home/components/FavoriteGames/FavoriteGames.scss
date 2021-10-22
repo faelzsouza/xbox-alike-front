@@ -1,9 +1,10 @@
 .favorite-games{
     width: 300px;
     margin: auto;
-    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     @media screen and (max-width: 300px) {
-        display: flex;
         flex-direction: column;
         width: 140px;
     }
