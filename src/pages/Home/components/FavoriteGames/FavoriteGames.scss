@@ -1,0 +1,14 @@
+.favorite-games{
+    width: 300px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    @media screen and (max-width: 300px) {
+        flex-direction: column;
+        width: 140px;
+    }
+    @media screen and (min-width: 301px) {
+        width: 80%;        
+    }
+}

@@ -1,0 +1,8 @@
+.game-video{
+    width: 100%;
+    margin: auto;
+    display: block;
+    @media screen and (min-width: 600px) {
+        width: 50%;
+    }
+}
